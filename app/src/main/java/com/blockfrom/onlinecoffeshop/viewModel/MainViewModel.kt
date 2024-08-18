@@ -23,6 +23,15 @@ class MainViewModel : ViewModel() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val lists = mutableListOf<CategoryModel>()
 
+                for(childSnapShot in snapshot.children){
+
+                    val list = childSnapShot.getValue(CategoryModel::class.java)
+
+                    if (list != null){
+                        lists.add(list)
+                    }
+                }
+                _category.value = lists
             }
 
             override fun onCancelled(error: DatabaseError) {
