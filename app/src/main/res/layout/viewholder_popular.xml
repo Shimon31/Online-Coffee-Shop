@@ -8,7 +8,7 @@
 
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/pic"
         android:layout_width="105dp"
         android:layout_height="75dp"
         android:elevation="4dp"
@@ -62,12 +62,14 @@
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/priceTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text="$-"
+            android:textStyle="bold"
             android:textSize="16sp"
-            />
+            android:textAlignment="center"
+            android:textColor="@color/black"/>
     </LinearLayout>
 
     <View
