@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.blockfrom.onlinecoffeshop.R
 import com.blockfrom.onlinecoffeshop.databinding.ViewholderCategoryBinding
 import com.blockfrom.onlinecoffeshop.model.CategoryModel
 
@@ -23,13 +24,29 @@ class CategoryAdapter(val items: MutableList<CategoryModel>) :
         return ViewHolder(binding)
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val item = items[position]
+        holder.binding.titleCat.text = item.title
+
+        holder.binding.root.setOnClickListener {
+
+            lastSelectedPosition = selectedPosition
+            selectedPosition = position
+            notifyItemChanged(selectedPosition)
+
+        }
+
+        if (selectedPosition==position){
+            holder.binding.titleCat.setBackgroundResource(R.drawable.orange_bg)
+        }
+        else{
+            holder.binding.titleCat.setBackgroundResource(R.drawable.edit_text_bg)
+        }
     }
+    override fun getItemCount(): Int =items.size
+
+
 
 
 }

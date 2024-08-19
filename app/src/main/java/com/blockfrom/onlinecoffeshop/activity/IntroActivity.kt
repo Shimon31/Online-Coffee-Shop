@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.blockfrom.onlinecoffeshop.databinding.ActivityIntroBinding
 
-class IntroActivity : AppCompatActivity() {
+class IntroActivity : BaseActivity() {
     lateinit var binding:ActivityIntroBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
