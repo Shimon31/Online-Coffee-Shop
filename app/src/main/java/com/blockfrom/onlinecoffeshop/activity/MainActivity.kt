@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blockfrom.onlinecoffeshop.R
 import com.blockfrom.onlinecoffeshop.adapter.CategoryAdapter
+import com.blockfrom.onlinecoffeshop.adapter.PopularAdapter
 import com.blockfrom.onlinecoffeshop.databinding.ActivityIntroBinding
 import com.blockfrom.onlinecoffeshop.databinding.ActivityMainBinding
 import com.blockfrom.onlinecoffeshop.viewModel.MainViewModel
@@ -21,7 +22,19 @@ class MainActivity : BaseActivity() {
         setContentView(binding.root)
 
         initCategory()
+        initPopular()
 
+    }
+
+    private fun initPopular() {
+        binding.progressBarPopular.visibility = View.VISIBLE
+        viewModel.popular.observe(this, Observer {
+
+            binding.recyclerViewPopular.layoutManager = LinearLayoutManager(this@MainActivity,LinearLayoutManager.HORIZONTAL,false)
+            binding.recyclerViewPopular.adapter = PopularAdapter(it)
+            binding.progressBarPopular.visibility = View.GONE
+        })
+        viewModel.loadPopular()
     }
 
     private fun initCategory() {

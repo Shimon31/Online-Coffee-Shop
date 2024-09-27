@@ -14,24 +14,26 @@ import com.google.firebase.database.ValueEventListener
 class MainViewModel : ViewModel() {
 
     private val firebaseDatabase = FirebaseDatabase.getInstance()
-    private val _category = MutableLiveData<MutableList<CategoryModel>>()
 
-    val category: LiveData<MutableList<CategoryModel>> = _category
+    private val _category = MutableLiveData<MutableList<CategoryModel>>()
     private val _popular = MutableLiveData<MutableList<ItemsModel>>()
 
+    val category: LiveData<MutableList<CategoryModel>> = _category
+    val popular: LiveData<MutableList<ItemsModel>> = _popular
 
-    fun loadCategory(){
+
+    fun loadCategory() {
 
         val Ref = firebaseDatabase.getReference("Category")
         Ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val lists = mutableListOf<CategoryModel>()
 
-                for(childSnapShot in snapshot.children){
+                for (childSnapShot in snapshot.children) {
 
                     val list = childSnapShot.getValue(CategoryModel::class.java)
 
-                    if (list != null){
+                    if (list != null) {
                         lists.add(list)
                     }
                 }
@@ -45,15 +47,15 @@ class MainViewModel : ViewModel() {
 
     }
 
-    fun loadPopular(){
+    fun loadPopular() {
         val Ref = firebaseDatabase.getReference("Items")
-        Ref.addValueEventListener(object :ValueEventListener{
+        Ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val lists = mutableListOf<ItemsModel>()
-                for (childSnapshot in snapshot.children ){
+                for (childSnapshot in snapshot.children) {
 
                     val list = childSnapshot.getValue((ItemsModel::class.java))
-                    if (list!= null){
+                    if (list != null) {
                         lists.add(list)
                     }
                 }
